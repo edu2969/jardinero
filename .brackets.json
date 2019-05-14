@@ -2,9 +2,7 @@
     "dimitrk.exclude-indexing-filetree.excludeList": [
         ".git(?!ignore)",
         "dist",
-        "node_modules", 
-        ".meteor",
-        "packages",
-        "uploads"
+        "bower_components",
+        "node_modules"
     ]
 }
