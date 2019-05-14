@@ -1,0 +1,659 @@
+#div-dispositivos, #div-calendario {
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+#div-camara {
+  width: 70hw;
+  border: 4px solid #555;
+  border-radius: 6px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.cuadro-error {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  width: 60%;
+}
+.row {
+  margin-left: 7px;
+  margin-right: 7px;
+}
+.tab-panel {
+  width: 16.666666666666666%;
+  text-align: center;
+}
+@media only screen and (max-width: 360px) {
+    .tab-panel h1 {
+        font-size: 24px;
+    }
+}
+.cantidad-alertas {
+  position: absolute;
+  top: 10px;
+  right: 50%;
+  background-color: red;
+  color: white;
+  font-weight: bolder;
+  border-radius: 50%;
+  width: 32px;
+}
+.editable {
+  background-color: rgba(162, 222, 208, 0.2);
+  cursor: zoom-in;
+  border-radius: 8px;
+}
+.contenedor-d3js, .banda-alerta {
+  width: calc(100% - 14px);
+  padding: 7px;
+  background-color: #9DC699;
+  border-radius: 8px;
+  margin: 0 auto 7px auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.banda-alerta {
+  display: inline-flex;
+  margin-left: 7px;
+}
+.banda-alerta h1 {
+  margin-left: 8px;
+}
+.banda-alerta p {
+  margin-left: 12px;
+}
+.led {
+  position: relative;
+  top: 20px;
+  left: 0px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.rojo {
+  background-color: red;
+}
+
+.verde {
+  background-color: green;
+}
+
+.amarillo {
+  background-color: yellow;
+}
+
+.reflejo {
+  position: absolute;
+  background-color: white;
+  width: 9px;
+  height: 6px;
+  border-radius: 50%;
+  top: 6px;
+  right: 6px;
+}
+
+.fila-otros {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 110px;
+  margin-bottom: 7px;
+  text-align: center;
+}
+.marco-grafico {
+  width: 100%;
+  text-align: center;
+}
+
+.dispositivo {
+  color: #1A2346;
+}
+
+.dispositivo h2 {
+  color: #F7F8FC;
+}
+
+.contenedor-d3js-sensor {
+  width: calc(100% - 14px);
+  padding: 7px;
+  background-color: #9DC699;
+  border-radius: 8px;
+  margin: 22px auto 7px auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.contenedor-d3js-sensor .nombre-sensor {
+  background-color: #808276;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  text-align: center;
+  padding: 1px;
+  margin-top: -20px;
+  border-radius: 4px;
+}
+
+.nombre-sensor h4 {
+  font-weight: bold;
+}
+
+.contenedor-aguja {
+  position: relative;
+  margin-top: 4px;
+  height: 120px;
+}
+.contenedor-aguja svg {
+  position: absolute;
+  left: 20px;
+  top: 0px;
+}
+.contenedor-aguja h2 {
+  position: absolute;
+  top: -22px;
+  left: 104px;
+  font-size: 40px;
+}
+.contenedor-aguja h1 {
+  position: absolute;
+  top: 24px;
+  left: 104px;
+  font-family: BariolLight;
+  font-size: 64px;
+}
+.contenedor-aguja h4 {
+  position: absolute;
+  top: 76px;
+  left: 192px;
+}
+.contenedor-aguja span {
+  position: absolute;
+  top: 40px;
+  left: 188px;
+  font-size: 32px;
+}
+
+
+.contenedor-termometro {
+  position: relative;
+  top: 0px;
+  width: 100%;
+  height: 120px;
+}
+.contenedor-termometro h2 {
+  position: absolute;
+  top: -22px;
+  left: 104px;
+  font-size: 40px;
+}
+.contenedor-termometro h1 {
+  position: absolute;
+  top: 24px;
+  left: 104px;
+  font-family: BariolLight;
+  font-size: 64px;
+}
+.contenedor-termometro h4 {
+  position: absolute;
+  top: 76px;
+  left: 182px;
+}
+.contenedor-termometro span {
+  position: absolute;
+  top: 40px;
+  left: 178px;
+  font-size: 32px;
+}
+.btn-cerrar-dispositivo {
+  font-size: 40px;
+  margin-top: -12px !important;
+}
+
+
+
+
+
+
+
+
+.deshabilitado {
+  opacity: 0.2;
+}
+
+
+.contenedor-dispositivo {
+  position: relative;
+  top: 2px;
+  width: 100%;
+  height: 162px;
+}
+.contenedor-dispositivo h3 {
+  position: absolute;
+  top: -22px;
+  left: 168px;
+}
+.contenedor-dispositivo h2 {
+  position: absolute;
+  top: 7px;
+  left: 168px;
+}
+.contenedor-dispositivo h4[rol="condicion"] {
+  position: absolute;
+  top: 54px;
+  left: 168px;
+}
+.contenedor-dispositivo h4[rol="fecha"] {
+  position: absolute;
+  top: 78px;
+  left: 168px;
+}
+.contenedor-dispositivo h4[rol="hora"] {
+  position: absolute;
+  top: 102px;
+  left: 168px;
+}
+.contenedor-dispositivo h4[rol="intervalo"] {
+  position: absolute;
+  top: 126px;
+  left: 168px;
+}
+.marco-imagen div {
+  position: absolute;
+  top: 24px;
+  left: 25px;
+  width: 103px;
+  height: 103px;
+}
+.marco-imagen div img {
+  width: 103px;
+  height: 103px;
+}
+
+
+
+
+
+@-webkit-keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+
+.botonera {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 15%;
+  background-color: #EDE9E3;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.botonera:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.btn-jardinero {
+  height: 58px;
+  width: 64px;
+  margin: 7px;
+  border-radius: 7px;
+  background-color: transparent;
+
+}
+
+.btn-editar {
+  background-image: url("/imagenes/logo-jardinero.png");
+  background-size: 44px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px 4px;
+}
+
+.marco-btn-agregar-dispositivo {
+  position: fixed;
+  bottom: -64px;
+  right: 110px;
+  border-radius: 15% 15% 0 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.marco-btn-agregar-dispositivo.activo {
+  bottom: 0px;
+}
+
+.marco-btn-agregar-dispositivo:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.marco-btn-agregar-dispositivo button {
+  font-size: 42px;
+  background-color: transparent;
+}
+
+
+.blink {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: 0.2;
+  }
+}
+
+.shake, .shake-slow {
+  display: inline-block;
+  transform-origin: center center; }
+
+.shake-slow {
+  animation-play-state: running; }
+
+@keyframes shake-slow-1 {
+  20% {
+    transform: translate(1px, 1px) rotate(0.02deg); }
+  40% {
+    transform: translate(-1px, 1px) rotate(-0.02deg); }
+  60% {
+    transform: translate(1px, 1px) rotate(-0.02deg); }
+  80% {
+    transform: translate(0px, -1px) rotate(0.02deg); }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0); } }
+
+@keyframes shake-slow-2 {
+  30% {
+    transform: translate(1px, 1px) rotate(0.02deg); }
+  10% {
+    transform: translate(-1px, 1px) rotate(-0.02deg); }
+  90% {
+    transform: translate(1px, 1px) rotate(-0.02deg); }
+  40% {
+    transform: translate(0px, -1px) rotate(0.02deg); }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0); } }
+
+@keyframes shake-slow-3 {
+  60% {
+    transform: translate(1px, 1px) rotate(0.02deg); }
+  20% {
+    transform: translate(-1px, 1px) rotate(-0.02deg); }
+  80% {
+    transform: translate(1px, 1px) rotate(-0.02deg); }
+  40% {
+    transform: translate(0px, -1px) rotate(0.02deg); }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0); } }
+
+@keyframes shake-slow-4 {
+  30% {
+    transform: translate(1px, 1px) rotate(0.02deg); }
+  70% {
+    transform: translate(-1px, 1px) rotate(-0.02deg); }
+  90% {
+    transform: translate(1px, 1px) rotate(-0.02deg); }
+  50% {
+    transform: translate(0px, -1px) rotate(0.02deg); }
+  0%, 100% {
+    transform: translate(0, 0) rotate(0); } }
+
+.shake-slow-1:hover, .shake-slow-1, .shake-slow-1.shake-constant {
+  animation-name: shake-slow-1;
+  animation-duration: 400ms;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite; }
+
+.shake-slow-2:hover, .shake-slow-2, .shake-slow-2.shake-constant {
+  animation-name: shake-slow-2;
+  animation-duration: 400ms;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite; }
+
+.shake-slow-3:hover, .shake-slow-3, .shake-slow-3.shake-constant {
+  animation-name: shake-slow-3;
+  animation-duration: 400ms;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite; }
+
+.shake-slow-4:hover, .shake-slow-4, .shake-slow-4.shake-constant {
+  animation-name: shake-slow-4;
+  animation-duration: 400ms;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.y.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+}
+
+.row-regla {
+  position: relative;
+  background-color: #9DC699;
+  border-radius: 8px;
+  padding-bottom: 4px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.contenedor-regla {
+  position: relative;
+  min-height: 88px;
+  cursor: crosshair;
+  color: white;
+}
+
+.contenedor-regla .regla-numero {
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 20px;
+  top: 7px;
+  left: 7px;
+  width: 32px;
+  text-align: center;
+}
+.contenedor-regla .regla-expresion {
+  font-size: 20px;
+  margin-left: 47px;
+}
+.regla-expresion h3 {
+  margin-top: 7px;
+  padding-top: 4px;
+  margin-bottom: -4px;
+}
+.contenedor-regla .regla-tipo {
+  margin-left: 47px;
+  padding-top: 2px;
+}
+.regla-tipo span {
+  margin-top: -30px;
+}
+.regla-fechas, .regla-horario, .regla-intervalo {
+  margin-left: 7px;
+}
+
+.row-regla .regla-boton-editar {
+  position: relative;
+  width: 32px;
+  top: -92px;
+  left: 124px;
+}
+
+.editor-regla {
+  position: relative;
+  padding-bottom: 14px;
+  color: white;
+}
+
+.editor-regla-cruz {
+  font-size: 20px;
+  position: absolute;
+  right: 20px;
+  top: 0px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-editar-regla, .btn-eliminar-regla {
+  border: 2px solid white;
+  border-radius: 3px;
+  padding: 6px;
+  font-size: 16px;
+}
+
+.btn-eliminar-regla {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-editar-regla {
+  position: absolute;
+  top: 48px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.line {
+  stroke-width: 3px;
+}
+
+.form-control {
+  font-size: 32px;
+  height: 56px;
+}
+
+
+.contenedor-reloj {
+  position: relative;
+  top: 0px;
+  width: 100%;
+  height: 120px;
+}
+
+.reloj {
+  position: absolute;
+  height: 80px;
+}
+
+.reloj-hora {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  font-size: 60px;
+  font-family: BariolLight;
+}
+.reloj-segundos {
+  position: absolute;
+  top: 20px;
+  left: 170px;
+  font-size: 40px;
+  font-family: BariolLight;
+}
+.reloj-fecha {
+  position: absolute;
+  top: 70px;
+  left: 40px;
+  font-size: 20px;
+  width: 240px;
+}
+@media screen and (max-width: 320px) {
+  .contenedor-termometro h2 {
+    font-size: 36px;
+  }
+  .marco-imagen div {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 83px;
+    height: 83px;
+  }
+  .marco-imagen div img {
+    width: 83px;
+    height: 83px;
+  }
+  .contenedor-dispositivo h3, .contenedor-dispositivo h2, .contenedor-dispositivo h4 {
+    left: 120px;
+  }
+  .contenedor-dispositivo h4[rol="condicion"] {
+    left: 120px;
+  }
+  .contenedor-dispositivo h4[rol="fecha"] {
+    left: 120px;
+  }
+  .contenedor-dispositivo h4[rol="hora"] {
+    left: 120px;
+  }
+  .contenedor-dispositivo h4[rol="intervalo"] {
+    left: 120px;
+  }
+  .form-control {
+    font-size: 24px;
+    height: 38px;
+  }
+}

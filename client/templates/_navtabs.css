@@ -1,0 +1,25 @@
+.nav-tabs{
+  background-color:#DACFCB;
+}
+.nav-tabs > li > a {
+  border-top-left-radius: 15%;
+  border-top-right-radius: 15%;
+  text-align: center;
+}
+.nav-tabs > li {
+  background-color: #DACFCB;
+}
+
+.nav-tabs > li.active a[data-toggle="tab"] h1 {
+  color: #2D314F;
+}
+
+.nav-tabs > li.active a[data-toggle="tab"] {
+  background-color: #EDE9E3;
+  margin: 0px;
+}
+
+.nav-tabs > li a[data-toggle="tab"] h1 {
+  color: #808276;
+  margin: 0px;
+}

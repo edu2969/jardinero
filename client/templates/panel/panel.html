@@ -1,0 +1,184 @@
+<template name="panel">
+  <div style="overflow: hidden;">
+  <ul class="nav nav-tabs" style="margin-bottom: 7px;">
+    <li class="tab-panel active">
+      <a data-toggle="tab" href="#div-sensores">
+        <h1 class="glyphicon glyphicon-cloud"></h1>
+        <span class="hidden-xs"><br/>Sensores</span>
+      </a>
+    </li>
+    <li class="tab-panel">
+      <a data-toggle="tab" href="#div-dispositivos">
+        <h1 class="glyphicon glyphicon-music"></h1>
+        <span class="hidden-xs"><br/>Dispositivos</span>
+      </a>
+    </li>
+    <li class="tab-panel">
+      <a data-toggle="tab" href="#div-camara">
+        <h1 class="glyphicon glyphicon-facetime-video"></h1>
+        <span class="hidden-xs"><br/>Camaras</span>
+      </a>
+    </li>
+    <li class="tab-panel">
+      <a data-toggle="tab" href="#div-calendario">
+        <h1 class="glyphicon glyphicon-calendar"></h1>
+        <span class="hidden-xs"><br/>Bitacora</span>
+      </a>
+    </li>
+    <li class="tab-panel">
+      <a data-toggle="tab" href="#div-alertas">
+        <h1 class="glyphicon glyphicon-warning-sign"></h1>
+        <span class="hidden-xs"><br/>Alertas</span>
+        <div class="cantidad-alertas">
+          99+
+        </div>
+      </a>
+    </li>
+    <li class="tab-panel">
+      <a data-toggle="tab" href="#div-grafico">
+        <h1 class="glyphicon glyphicon-stats"></h1>
+        <span class="hidden-xs"><br/>Grafico</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="div-sensores" class="tab-pane fade in active"></div>
+    <div id="div-dispositivos" class="tab-pane fade"></div>
+    <div id="div-alertas" class="tab-pane fade">
+      <div class="banda-alerta">
+        <div class="led rojo">
+          <div class="reflejo"></div>
+        </div>
+        <h1>T 26<small> °C</small></h1>
+        <p>La temperatura maxima fue sobrepasada<br/>
+        Entre las 14:23 hasta ahora</p>
+      </div>
+      <div class="banda-alerta">
+        <div class="led amarillo">
+          <div class="reflejo"></div>
+        </div>
+        <h1>T 26<small> °C</small></h1>
+        <p>La temperatura maxima fue sobrepasada<br/>
+        Entre las 14:23 hasta ahora</p>
+      </div>
+      <div class="banda-alerta">
+        <div class="led rojo">
+          <div class="reflejo"></div>
+        </div>
+        <h1>T 26<small> °C</small></h1>
+        <p>La temperatura maxima fue sobrepasada<br/>
+        Entre las 14:23 hasta ahora</p>
+      </div>
+      <div class="banda-alerta">
+        <div class="led verde">
+          <div class="reflejo"></div>
+        </div>
+        <h1>T 26<small> °C</small></h1>
+        <p>La temperatura maxima fue sobrepasada<br/>
+        Entre las 14:23 hasta ahora</p>
+      </div>
+      <div class="banda-alerta">
+        <div class="led verde">
+          <div class="reflejo"></div>
+        </div>
+        <h1>T 26<small> °C</small></h1>
+        <p>La temperatura maxima fue sobrepasada<br/>
+        Entre las 14:23 hasta ahora</p>
+      </div>
+    </div>
+    <div id="div-camara" class="tab-pane fade">
+      <img class="imagen-01" src="http://190.164.192.227:8081" width="100%"/>
+    </div>
+    <div id="div-calendario" class="tab-pane fade">
+      <div class="row">
+        <div class="col-xs-6"><h1>Bit&aacute;cora</h1></div>
+        <div class="col-xs-6" style="padding-top: 26px; text-align: right">
+          <button class="btn btn-primary" id="btn-nueva">
+            <h4>+ Nueva</h4>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-7">
+          <h3>Proyecto Agrícola</h3>
+          <div class="input-form">
+            <select id="select-planta" tipo="select-id" class="form-control">
+              {{#each plantas}}
+              <option id="{{_id}}">{{nombre}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-5">
+          <h3>&nbsp;</h3>
+          <button class="btn btn-success btn-block" id="btn-poda">
+            <h4><span class="glyphicon glyphicon-scissors"></span> Podar</h4>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <h3>D&iacute;a 0</h3>
+          <div class="input-group date datetimepicker-component">
+            <input id="input-fechaCero" tipo="texto" class="form-control" value="{{FormatoFecha planta.fechaCero 'DD/MM/YY'}}">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <h3>Ver d&iacute;a</h3>
+          <div class="input-form">
+            <input id="input-dia" tipo="numero" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Nota</h3>
+          <div class="input-form">
+            <textarea id="input-nota" class="form-control" rows="3">{{#if bitacora}}{{bitacora.nota}}{{/if}}</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Anotaciones</h2>
+          {{#each anotaciones}}
+          <span>D:{{dia}} {{FormatoFecha fecha 'DD/MM/YY'}} {{nota}}
+          </span><br/>
+          {{else}}
+          <span><strong>NO HAY ANOTACIONES</strong></span>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div id="div-grafico" class="tab-pane fade">
+      <div class="row">
+        <div class="col-xs-12" style="text-align:center">
+          <h2>T&deg; / %H <small> en el tiempo</small></h2>
+          <span>{{rangoFechasGrafico.desde}}
+            - {{rangoFechasGrafico.hasta}}</span>
+        </div>
+        <div class="marco-grafico"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marco-btn-agregar-dispositivo">
+    <button class="btn btn-agregar-dispositivo">
+      <span class="glyphicon glyphicon-plus"> </span>
+    </button>
+  </div>
+  <div class="botonera">
+    <button class="btn btn-jardinero btn-editar"><span> </span></button>
+  </div>
+  {{#if error}}
+  <div class="cuadro-error">
+    <div class="alert alert-warning" role="alert"
+      style="display: none">{{error.mensaje}}</div>
+  </div>
+  {{/if}}
+  </div>
+</template>

@@ -1,0 +1,38 @@
+<template name="modalNueva">
+  <div class="modal fade" id="modal-nueva" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-hidden="true">&times;</button>
+          <h4>Nuevo proyecto</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <h4>Nombre</h4>
+              <div class="form-group">
+                <input id="input-nombre" class="form-control" placeholder="nombre"/>
+              </div>
+            </div>
+          </div>
+          {{#if error}}
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="alert alert-warning" role="alert" style="display: none">{{error.mensaje}}</div>
+            </div>
+          </div>
+          {{/if}}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal">
+            <h3 class="glyphicon glyphicon-remove"></h3>
+          </button>
+          <button class="btn btn-success" id="btn-ok">
+            <h3 class="glyphicon glyphicon-ok"></h3>
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

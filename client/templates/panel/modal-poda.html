@@ -1,0 +1,29 @@
+<template name="modalPoda">
+  <div class="modal fade" id="modal-poda" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>Podado de Ni&ntilde;a</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <h4 class="alert alert-danger">¿Esta seguro de marcar como PODADA a {{nombrePlanta}}?</h4>
+              <span>Esta accion la har&aacute; desaparecer del listado de ni&ntilde;as.</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+          <button class="btn btn-success" id="btn-ok">
+            <span class="glyphicon glyphicon-ok"></span>
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

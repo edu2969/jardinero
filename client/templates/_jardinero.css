@@ -1,0 +1,20 @@
+@font-face {
+    font-family: Bariol;
+    src: url(/fonts/Bariol.ttf);
+}
+
+@font-face {
+    font-family: BariolLight;
+    src: url(/fonts/Bariol_Light.otf);
+}
+
+@font-face {
+    font-family: BariolThin;
+    src: url(/fonts/Bariol_Thin.otf);
+}
+
+body {
+  font-family: "Bariol";
+  background-color: #EDE9E3;
+  overflow: hidden;
+}

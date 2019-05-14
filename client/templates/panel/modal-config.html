@@ -1,0 +1,299 @@
+<template name="modalConfig">
+  <div class="modal fade" id="modal-config" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close btn-cerrar-dispositivo"
+           aria-hidden="true">&times;</button>
+          <h4>{{{glosaDispositivo}}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <span>Tipo</span>
+              <div class="form-group">
+                <select id="select-tipo" class="form-control">
+                  {{#each tipos}}
+                  <option id="{{id}}" {{selectedEval id dispositivo.tipo}}>{{{glosa}}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <span>Nombre</span>
+              <input placeholder="Nombre Sensor" class="form-control"
+              id="input-nombre" value="{{dispositivo.nombre}}">
+            </div>
+            <div class="col-xs-5">
+              <span>Pin </span>
+              <span style="font-size: 9px">{{dispositivo.gpio}}</span>
+              <div class="form-group">
+                <input type="number" id="input-pin"
+                  class="form-control" placeholder="PIN"
+                  value="{{dispositivo.pin}}" />
+              </div>
+            </div>
+            <div class="col-xs-7">
+              <span>Modo</span>
+              <div>
+                <input type="checkbox" id="input-modo" class="simple-switch"/>
+                <span>{{#if isModoManual}}MANUAL{{else}}AUTO{{/if}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="config-DHT11" style="display: {{#if isSensor}}block{{else}}none{{/if}}">
+            <div class="row">
+              <div class="col-xs-6">
+                <h4>T&deg; baja</h4>
+                <input type="number" id="input-temperatura-baja" class="form-control" placeholder="min" value="{{dispositivo.tmin}}" />
+                <h4>%H baja</h4>
+                <input type="number" id="input-humedad-baja" class="form-control" placeholder="min" value="{{dispositivo.hmin}}" />
+              </div>
+              <div class="col-xs-6">
+                <h4>T&deg; alta</h4>
+                <input type="number" id="input-temperatura-alta" class="form-control" placeholder="max" value="{{dispositivo.tmax}}" />
+                <h4>%H alta</h4>
+                <input type="number" id="input-humedad-alta" class="form-control" placeholder="max" value="{{dispositivo.hmax}}" />
+              </div>
+            </div>
+          </div>
+
+          <div class="config-dispositivo" style="display: {{#if isReglamentado}}block{{else}}none{{/if}}">
+            <div style="display: {{#if reglaSeleccionada}}none{{else}}block{{/if}}">
+              <div class="row">
+                <div class="col-xs-10">
+                  <h3>{{#if reglas}}Set de reglas{{else}}No hay reglas{{/if}}</h3>
+                </div>
+                <div class="col-xs-2">
+                  <botton id="btn-agregar-regla" class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </botton>
+                </div>
+              </div>
+              <div class="row">
+                {{#each reglas}}
+                <div class="col-xs-12 col-sm-6">
+                  <div class="row-regla">
+                    <div class="contenedor-regla" id="{{_id}}">
+                      <div class="regla-numero">
+                        <span>{{indice}}</span>
+                      </div>
+                      <div class="regla-expresion">
+                        {{#if exp}}
+                        <h3><strong>{{{exp.variable}}} {{exp.operacion}} {{exp.valor}}</strong></h3> {{else}}
+                        <h3><strong>SIEMPRE</strong></h3> {{/if}}
+                      </div>
+                      <div class="regla-tipo">
+                        <span class="glyphicon glyphicon-arrow-right"></span> {{textoAccion}}
+                      </div>
+                      {{#if fechaDesde}}
+                      <div class="regla-fechas">
+                        <span class="glyphicon glyphicon-calendar"></span>
+				        {{FormatoFecha fechaDesde 'DD/MMM'}} a  {{FormatoFecha fechaHasta 'DD/MMM'}}
+                      </div>
+                      {{/if}} {{#if desde}}
+                      <div class="regla-horario">
+                        <span class="glyphicon glyphicon-time"></span> {{desde}} - {{hasta}}
+                        <br>
+                      </div>
+                      {{/if}} {{#if cada}}
+                      <div class="regla-intervalo">
+                        <span class="glyphicon glyphicon-repeat"></span> {{intervalo}} cada {{cada}}
+                      </div>
+                      {{/if}}
+                      <div class="btn-eliminar-regla">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </div>
+                      <div class="btn-editar-regla">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="clear:both"></div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+
+
+
+
+
+
+            <!-- EDITOR DE REGLA -->
+            <div class="editor-regla row-regla" style="display: {{#if reglaSeleccionada}}block{{else}}none{{/if}}">
+              <div class="row">
+                <div class="col-xs-12">
+                  <h3>Regla N&deg; {{reglaSeleccionada.indice}}</h3>
+                </div>
+                <div class="col-xs-4">
+                  <h4>Acci&oacute;n</h4>
+                </div>
+                <div class="col-xs-8">
+                  <select type="select-id" id="select-accion" class="form-control">
+                    <option id="I" {{selectedEval reglaSeleccionada.tipo 'I'}}>Encender</option>
+                    <option id="O" {{selectedEval reglaSeleccionada.tipo 'O'}}>Apagar</option>
+                    <option id="X" {{selectedEval reglaSeleccionada.tipo 'X'}}>Intervalo</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-4">
+                  <div id="chk-condicion" class="checkbox" style="margin-bottom: 0px;">
+                    <label>
+                      <input id="checkbox-condicion" type="checkbox" checked="{{#if reglaSeleccionada.exp}}checked{{/if}}">
+                      <h4 style="margin-top: 0px; margin-bottom: 0px;">Condici&oacute;n</h4></label>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                  <div class="expresion-regla selector-condicion" style="display: {{#if reglaSeleccionada.exp}}block{{else}}none{{/if}}">
+                    <select type="select-id" id="select-variable" class="form-control" style="width: 30%; display:inline-block;">
+                      <option id="T" {{selectedEval reglaSeleccionada.exp.variable 'T'}}>T&deg;</option>
+                      <option id="H" {{selectedEval reglaSeleccionada.exp.variable 'H'}}>%H</option>
+                    </select>
+                    <select type="select-id" id="select-operacion" class="form-control" style="width: 30%; display:inline-block;">
+                      <option id="<" {{selectedEval reglaSeleccionada.exp.operacion '<'}}>&lt;</option>
+                      <option id="==" {{selectedEval reglaSeleccionada.exp.operacion '=='}}>=</option>
+                      <option id=">" {{selectedEval reglaSeleccionada.exp.operacion '>'}}>&gt;</option>
+                      <option id="<=" {{selectedEval reglaSeleccionada.exp.operacion '<='}}>&lt;=</option>
+                      <option id=">=" {{selectedEval reglaSeleccionada.exp.operacion '>='}}>&gt;=</option>
+                      <option id="!=" {{selectedEval reglaSeleccionada.exp.operacion '!='}}>&lt;&gt;</option>
+                    </select>
+                    <input type="number" id="input-valor" class="form-control" placeholder="val" value="{{reglaSeleccionada.exp.valor}}" style="width: 36%; display:inline-block;" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <div id="chk-fecha" class="checkbox" style="margin-bottom: 0px;">
+                    <label>
+                      <input id="checkbox-fecha" type="checkbox" checked="{{#if reglaSeleccionada.fechaDesde}}checked{{/if}}">
+                      <h4 style="margin-top: 0px; margin-bottom: 0px;">Fechas</h4></label>
+                  </div>
+                </div>
+              </div>
+              <div class="selector-fecha">
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                    <span>desde</span>
+                    <div type="date" class="input-group date datetimepicker-component">
+                      <input id="input-fechaDesde" type="fecha" class="form-control" value="{{FormatoFecha reglaSeleccionada.fechaDesde 'DD/MM/YY'}}">
+                      <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-6">
+                    <span>hasta</span>
+                    <div class="input-group date datetimepicker-component">
+                      <input id="input-fechaHasta" type="fecha" class="form-control" value="{{FormatoFecha reglaSeleccionada.fechaHasta 'DD/MM/YY'}}">
+                      <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <div id="chk-horario" class="checkbox" style="margin-bottom: 0px;">
+                    <label>
+                      <input id="checkbox-horario" type="checkbox" checked="{{#if reglaTieneHorario}}checked{{/if}}">
+                      <h4 style="margin-top: 0px; margin-bottom: 0px;">Horario</h4></label>
+                  </div>
+                </div>
+              </div>
+              <div class="selector-horario">
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                    <span>desde</span>
+                    <div class="input-group date timepicker-component">
+                      <input id="input-desde" type="time" class="form-control" value="{{reglaSeleccionada.desde}}">
+                      <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-time"></span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-md-6">
+                    <span>hasta</span>
+                    <div class="input-group date timepicker-component">
+                      <input id="input-hasta" type="time" class="form-control" value="{{reglaSeleccionada.hasta}}">
+                      <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-time"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <div id="chk-ciclo" class="checkbox" style="margin-bottom: 0px;">
+                    <label>
+                      <input id="checkbox-ciclo" type="checkbox" checked="{{#if reglaSeleccionada.cada}}checked{{/if}}">
+                      <h4 style="margin-top: 0px; margin-bottom: 0px;">Ciclo</h4></label>
+                  </div>
+                </div>
+              </div>
+              <div class="selector-ciclo">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <span>intervalo</span>
+                    <input type="text" id="input-intervalo" class="form-control" placeholder="0s" value="{{reglaSeleccionada.intervalo}}" />
+                  </div>
+                  <div class="col-xs-6">
+                    <span>cada</span>
+                    <input type="text" id="input-cada" class="form-control" placeholder="0s" value="{{reglaSeleccionada.cada}}" />
+                  </div>
+                </div>
+              </div>
+              <!-- Cierra el editor de regla -->
+              <div class="editor-regla-cruz">
+                <span style="font-size: 14px">listo&nbsp;&nbsp;</span><span style="font-size: 40px">×</span>
+              </div>
+            </div>
+            <!-- FIN EDITOR REGLA -->
+
+
+
+
+
+
+
+
+
+
+          </div>
+          <!-- Fin config-dispositivo -->
+
+          <div class="config-modo" style="display: {{#if isModoManual}}block{{else}}none{{/if}}">
+            <div class="row">
+              <div class="col-xs-12">
+              <span>Modo Manual</span>
+              <div>
+                <input type="checkbox" id="input-onoff" class="simple-switch {{#if isModoManual}}checked{{else}}unchecked{{/if}}"/>
+                <span>{{#if dispositivo.modo.encendido}}ON{{else}}OFF{{/if}}</span>
+              </div>
+              </div>
+            </div>
+          </div>
+
+          {{#if error}}
+          <div class="row">
+            <div class="col-xs-12">
+              <br/>
+              <div class="alert alert-warning" role="alert">{{error.mensaje}}</div>
+            </div>
+          </div>
+          {{/if}}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

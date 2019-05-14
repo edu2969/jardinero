@@ -1,0 +1,10 @@
+<template name="PanelLayout">
+  <modals>
+    {{> modalConfig}}
+    {{> modalNueva}}
+    {{> modalPoda}}
+  </modals>
+  <main>
+    {{> Template.dynamic template=contenido}}
+  </main>
+</template>

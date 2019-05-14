@@ -1,0 +1,12 @@
+.contenedor-password {
+  width: 100%;
+  text-align: center;
+}
+
+.pad-password {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+  background-color: transparent;
+}
